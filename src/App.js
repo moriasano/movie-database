@@ -8,7 +8,7 @@ function App() {
     <Authenticator socialProviders={['amazon', 'apple', 'facebook', 'google']}>
       <div>
         <h1>
-          Search for Movies!!
+          Search for Movies!
         </h1>
 
         {({signOut, user}) => (
