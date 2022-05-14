@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Authenticator } from '@aws-amplify/ui-react'
+import { Authenticator  } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <Authenticator socialProviders={['amazon', 'apple', 'facebook', 'google']}>
       <div>
         <h1>
-          Search for Movies
+          Search for Movies!!!
         </h1>
 
         {({signOut, user}) => (
