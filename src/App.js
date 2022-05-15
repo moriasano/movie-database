@@ -1,14 +1,10 @@
 import './styles/App.css';
 import Navigation from './Navigation';
-
-import { Button } from 'react-bootstrap';
-
-// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home';
 
 
 import { Authenticator  } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css';
-
 
 
 // import Home from './Home';
@@ -18,10 +14,12 @@ function App() {
     <Authenticator>
         {({ signOut, user }) => (
           <div>
-            <Navigation signOut={signOut} username={user.username}></Navigation>
-            {/* User: {user.username}
-            <Button onClick={signOut}>Log Out</Button> */}
-  
+            <Navigation signOut={signOut} username={user.username} className="navbar" />
+
+            <div className='content'>
+              <Home />
+            </div>
+            
           </div>
         )}
       </Authenticator>
