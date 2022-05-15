@@ -5,8 +5,8 @@ function ViewMovies({movies, filter}) {
 
     movies = [
         {
-            name: "mori",
-            director: "mori",
+            name: "Mori",
+            director: "Momomomo",
             year: "mori",
             genre: "mori",
             rating: "5"
@@ -15,7 +15,7 @@ function ViewMovies({movies, filter}) {
             name: "taiyp",
             director: "taiyp",
             year: "taiyp",
-            genre: "poop",
+            genre: "taiyo",
             rating: "3"
         }
     ]
@@ -52,10 +52,18 @@ function ViewMovies({movies, filter}) {
 function MovieRow({movie, filter}) {
     return (
         <tr>
-            <td><HighlightText text={movie.name} highlightStr={filter}/></td>
-            <td>{movie.director}</td>
-            <td>{movie.year}</td>
-            <td>{movie.genre}</td>
+            <td>
+                <HighlightText text={movie.name} highlightStr={filter}/>
+            </td>
+            <td>
+                <HighlightText text={movie.director} highlightStr={filter}/>
+            </td>
+            <td>
+                {movie.year}
+            </td>
+            <td>
+                <HighlightText text={movie.genre} highlightStr={filter}/>
+            </td>
 
             {/* Rating */}
             <td>
@@ -68,7 +76,8 @@ function MovieRow({movie, filter}) {
 }
 
 function HighlightText({text, highlightStr}) {
-    if(highlightStr.length === 0) {
+    if(highlightStr.length === 0 ||
+        !text.includes(highlightStr)) {
         return <>{text}</>
     }
 
