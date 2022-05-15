@@ -1,25 +1,32 @@
-import './App.css';
+import './styles/App.css';
+import Navigation from './Navigation';
+
+import { Button } from 'react-bootstrap';
+
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 
 import { Authenticator  } from '@aws-amplify/ui-react'
 import '@aws-amplify/ui-react/styles.css';
 
+
+
+// import Home from './Home';
+
 function App() {
   return (
-    <Authenticator socialProviders={['amazon', 'apple', 'facebook', 'google']}>
-      <div>
-        <h1>
-          Search for Movies!
-        </h1>
-
-        {({signOut, user}) => (
+    <Authenticator>
+        {({ signOut, user }) => (
           <div>
-            <h1>Hello {user.username}</h1>
-            <button onClick={signOut}>Sign out</button>
+            <Navigation signOut={signOut} username={user.username}></Navigation>
+            {/* User: {user.username}
+            <Button onClick={signOut}>Log Out</Button> */}
+  
           </div>
         )}
-      </div>
-    </Authenticator>
+      </Authenticator>
   );
 }
 
 export default App;
+
