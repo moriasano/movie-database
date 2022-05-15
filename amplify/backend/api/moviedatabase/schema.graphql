@@ -6,6 +6,7 @@ type Movies @model {
   id: ID!
   name: String!
   director: String
+  year: Integer
   genre: String
   rating: String
 }

@@ -1,11 +1,14 @@
 import '../styles/SearchMovies.css';
 
 import { useState } from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
+import { Button, Form, FormControl, Modal } from 'react-bootstrap';
+import AddMovieModal from './AddMovieModal';
+
 
 function SearchMovies() {
     // const [movies, setMovies] = useState([]);
     const [searchField, setSearchField] = useState("");
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     return (
         <div className="body">
@@ -20,8 +23,10 @@ function SearchMovies() {
                     aria-label="Search for movies"
                 />
                 &nbsp;&nbsp;
-                <Button className="button">+</Button>
+                <Button className="button" variant="dark" onClick={e => setIsAddModalOpen(true)}>+</Button>
             </Form>
+
+            <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen}/>
         </div>
     );
 }

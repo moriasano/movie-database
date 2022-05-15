@@ -6,7 +6,7 @@ function Home() {
     return (
         <div className="body">
             
-            <h1>Search for Movies!</h1>
+            <h1>The Movie Database</h1>
             <SearchMovies />
         </div>
     );
