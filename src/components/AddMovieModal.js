@@ -1,15 +1,38 @@
 import { useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
-function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
-    const [name, setName] = useState("");
-    const [director, setDirector] = useState("");
-    const [year, setYear] = useState("");
-    const [genre, setGenre] = useState("");
-    const [rating, setRating] = useState("");
+import { DataStore } from '@aws-amplify/datastore';
+import { Movies } from '../models';
 
-    function saveMovie() {
-        alert(name);
+
+const initialFormState = {
+    name: '',
+    director: '',
+    year: '',
+    genre: '',
+    rating: '',
+}
+
+function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
+    const [formData, setFormData] = useState(initialFormState)
+
+    async function saveMovie() {
+        if(inputValidation()) {
+            await DataStore.save(new Movies(formData));
+            setFormData(initialFormState);
+        }
+    }
+
+    function inputValidation() {
+        if(formData.name === "" || formData.year === "") {
+            alert("Name and year are required for every movie")
+            return false;
+        }
+        else if (formData.year < 1800 || formData.year > 2040){
+            alert("Make sure to enter a valid year")
+            return false;
+        }
+        return true;
     }
 
     return (
@@ -30,10 +53,10 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
                         <Form.Label column sm="3">Name</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={name}
+                                value={formData.name}
                                 type="text"
                                 placeholder="Name"
-                                onChange={ e => setName(e.target.value) }
+                                onChange={e => setFormData({ ...formData, 'name': e.target.value})}
                             />
                         </Col>
                     </Form.Group>
@@ -43,10 +66,10 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
                         <Form.Label column sm="3">Director</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={director}
+                                value={formData.director}
                                 type="text"
                                 placeholder="Director"
-                                onChange={ e => setDirector(e.target.value) }
+                                onChange={e => setFormData({ ...formData, 'director': e.target.value})}
                             />
                         </Col>
                     </Form.Group>
@@ -56,10 +79,10 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
                         <Form.Label column sm="3">Release Year</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={year}
+                                value={formData.year}
                                 type="number"
                                 placeholder={2000}
-                                onChange={ e => setYear(e.target.value) }
+                                onChange={e => setFormData({ ...formData, 'year': e.target.value})}
                             />
                         </Col>
                     </Form.Group>
@@ -69,10 +92,10 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
                         <Form.Label column sm="3">Genre</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={genre}
+                                value={formData.genre}
                                 type="text"
                                 placeholder="Action"
-                                onChange={ e => setGenre(e.target.value) }
+                                onChange={e => setFormData({ ...formData, 'genre': e.target.value})}
                             />
                         </Col>
                     </Form.Group>
@@ -82,10 +105,10 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
                         <Form.Label column sm="3">Rating</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={rating}
+                                value={formData.rating}
                                 type="number"
                                 placeholder={5}
-                                onChange={ e => setRating(e.target.value) }
+                                onChange={e => setFormData({ ...formData, 'rating': e.target.value})}
                             />
                         </Col>
                     </Form.Group>
