@@ -1,6 +1,6 @@
 import './styles/App.css';
-import Navigation from './Navigation';
-import Home from './Home';
+import Navigation from './components/Navigation';
+import Home from './components/Home';
 
 
 import { Authenticator  } from '@aws-amplify/ui-react'
