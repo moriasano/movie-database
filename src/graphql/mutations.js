@@ -12,8 +12,12 @@ export const createMovies = /* GraphQL */ `
       director
       genre
       rating
+      year
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -28,8 +32,12 @@ export const updateMovies = /* GraphQL */ `
       director
       genre
       rating
+      year
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -44,8 +52,12 @@ export const deleteMovies = /* GraphQL */ `
       director
       genre
       rating
+      year
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;

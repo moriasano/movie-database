@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
-import { DataStore } from '@aws-amplify/datastore';
-import { Movies } from '../models';
+// import { DataStore } from '@aws-amplify/datastore';
+// import { Movies } from '../models';
 
+import { API } from 'aws-amplify';
+import { createMovies } from '../graphql/mutations';
 
 const initialFormState = {
     name: '',
@@ -18,7 +20,7 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
 
     async function saveMovie() {
         if(inputValidation()) {
-            await DataStore.save(new Movies(formData));
+            await API.graphql({ query: createMovies, variables: { input: formData } });
             setFormData(initialFormState);
         }
     }

@@ -11,7 +11,7 @@ import '@aws-amplify/ui-react/styles.css';
 
 function App() {
   return (
-    <Authenticator>
+    <Authenticator socialProviders={['amazon', 'apple', 'facebook', 'google']}>
         {({ signOut, user }) => (
           <div>
             <Navigation signOut={signOut} username={user.username} className="navbar" />

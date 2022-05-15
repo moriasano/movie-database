@@ -3,28 +3,26 @@ import '../styles/SearchMovies.css';
 import { useState, useEffect } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
 import AddMovieModal from './AddMovieModal';
-
-import { DataStore } from '@aws-amplify/datastore';
-import { Movies } from '../models';
 import ViewMovies from './ViewMovies';
+
+import { API } from 'aws-amplify';
+import { listMovies } from '../graphql/queries';
 
 
 function SearchMovies() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState("");
     const [searchField, setSearchField] = useState("");
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-
     // Fetch Movies
+    async function fetchMovies() {
+        const apiData = await API.graphql({ query: listMovies });
+        console.log(apiData.data.listMovies.items);
+        setMovies(JSON.stringify(apiData.data.listMovies.items)); // TODO: not sure why, but we need this here
+    }
     useEffect(() => {
-        async function fetchMovies() {
-            const movies = await DataStore.query(Movies);
-            // alert(movies);
-            setMovies(movies);
-        }
         fetchMovies();
     }, []);
-
     
 
     return (
@@ -43,8 +41,7 @@ function SearchMovies() {
                 <Button className="button" variant="dark" onClick={e => setIsAddModalOpen(true)}>+</Button>
             </Form>
 
-            {movies}
-            <ViewMovies filter={searchField}></ViewMovies>
+            <ViewMovies movies={JSON.parse(movies)} filter={searchField} />
 
             <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen}/>
         </div>

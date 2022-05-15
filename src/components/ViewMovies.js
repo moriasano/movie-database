@@ -2,23 +2,22 @@ import '../styles/ViewMovies.css';
 import { Table } from 'react-bootstrap';
 
 function ViewMovies({movies, filter}) {
-
-    movies = [
-        {
-            name: "Mori",
-            director: "Momomomo",
-            year: "mori",
-            genre: "mori",
-            rating: "5"
-        },
-        {
-            name: "taiyp",
-            director: "taiyp",
-            year: "taiyp",
-            genre: "taiyo",
-            rating: "3"
-        }
-    ]
+    // movies = [
+    //     {
+    //         name: "Mori",
+    //         director: "Momomomo",
+    //         year: "mori",
+    //         genre: "mori",
+    //         rating: "5"
+    //     },
+    //     {
+    //         name: "taiyp",
+    //         director: "taiyp",
+    //         year: "taiyp",
+    //         genre: "taiyo",
+    //         rating: "3"
+    //     }
+    // ]
 
     return (
         <Table hover borderless className='table'>
@@ -35,23 +34,22 @@ function ViewMovies({movies, filter}) {
 
             {/* Movies List */}
             <tbody>
-                {movies.map((movie) => {
+                {movies.map(movie => {
                     if (movie.name.includes(filter) ||
                         movie.director.includes(filter) ||
                         movie.genre.includes(filter)) {
-                        return <MovieRow movie={movie} filter={filter} />
+                        return <MovieRow movie={movie} filter={filter} key={movie.key} />
                     }
                     return <></>
                 })}
             </tbody>
-
         </Table>
     );
 }
 
-function MovieRow({movie, filter}) {
+function MovieRow({movie, filter, key}) {
     return (
-        <tr>
+        <tr key={key}>
             <td>
                 <HighlightText text={movie.name} highlightStr={filter}/>
             </td>

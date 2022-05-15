@@ -9,8 +9,12 @@ export const getMovies = /* GraphQL */ `
       director
       genre
       rating
+      year
       createdAt
       updatedAt
+      _version
+      _deleted
+      _lastChangedAt
     }
   }
 `;
@@ -27,10 +31,46 @@ export const listMovies = /* GraphQL */ `
         director
         genre
         rating
+        year
         createdAt
         updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       nextToken
+      startedAt
+    }
+  }
+`;
+export const syncMovies = /* GraphQL */ `
+  query SyncMovies(
+    $filter: ModelMoviesFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncMovies(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        director
+        genre
+        rating
+        year
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
     }
   }
 `;
