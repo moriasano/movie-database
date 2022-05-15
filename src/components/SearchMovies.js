@@ -6,6 +6,7 @@ import AddMovieModal from './AddMovieModal';
 
 import { DataStore } from '@aws-amplify/datastore';
 import { Movies } from '../models';
+import ViewMovies from './ViewMovies';
 
 
 function SearchMovies() {
@@ -17,8 +18,8 @@ function SearchMovies() {
     // Fetch Movies
     useEffect(() => {
         async function fetchMovies() {
-            const movies = await DataStore(Movies);
-            alert(movies);
+            const movies = await DataStore.query(Movies);
+            // alert(movies);
             setMovies(movies);
         }
         fetchMovies();
@@ -43,6 +44,7 @@ function SearchMovies() {
             </Form>
 
             {movies}
+            <ViewMovies filter={searchField}></ViewMovies>
 
             <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen}/>
         </div>
