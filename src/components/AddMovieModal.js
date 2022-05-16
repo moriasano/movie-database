@@ -24,12 +24,16 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
     }
 
     function inputValidation() {
-        if(formData.name === "" || formData.year === "") {
-            alert("Name and year are required for every movie")
+        if(formData.name === "" ||
+           formData.director === "" ||
+           formData.year === "" ||
+           formData.genre === "" ||
+           formData.rating === "") {
+            alert("You must fill out all movie fields");
             return false;
         }
         else if (formData.year < 1800 || formData.year > 2040){
-            alert("Make sure to enter a valid year")
+            alert("Valid years are 1800 to 2040");
             return false;
         }
         return true;
