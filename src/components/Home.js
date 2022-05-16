@@ -7,7 +7,9 @@ function Home() {
         <div className="body">
             <style>
                 {/* Import Custom Font */}
-                @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap');
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap');
+                </style>
             </style>
 
             <div className='spacing'/>

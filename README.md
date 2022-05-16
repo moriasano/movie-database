@@ -29,3 +29,4 @@ Possible Improvments:
 3. Make search/highting not be case sensitive
 4. Sort is only in ascending order, add desending as well
 5. Table Actions should be restricted by user roles
+6. Pagnianation on Movies table

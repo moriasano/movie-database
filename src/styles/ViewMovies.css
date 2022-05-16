@@ -6,6 +6,7 @@ th:hover {
 td:hover {
     font-size: large;
     color: grey;
+    font-weight: bold;
 }
 
 .highlight {
