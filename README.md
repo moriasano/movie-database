@@ -8,6 +8,7 @@ Tools Used:
 react-create-app 
 react-boostrap
 AWS Amplify (for hosting)
+DynamoDB (to store movie database in AWS)
 GraphQL (for APIs)
 AWS Congnito (for user managment)
 
@@ -18,6 +19,7 @@ App.js
 -- Home.js
 ---- SearchMovies.js
 ------ ViewMovies.js
+-------- DeleteMovieModal.js
 ------ AddMovieModal.js
 ```
 
