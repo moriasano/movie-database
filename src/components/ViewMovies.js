@@ -116,7 +116,7 @@ function MovieRow({movie, filter, key, setIsDeleteModalOpen, setMovieToDelete}) 
             </td>
 
             {/* Actions */}
-            <td onClick={() => deleteMovie()}>🗑</td>
+            <td className="clickable" onClick={() => deleteMovie()}>🗑</td>
         </tr>
     );
 }

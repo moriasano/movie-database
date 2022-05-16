@@ -27,3 +27,5 @@ Possible Improvments:
 1. Delete Movie from UI
 2. Currently, the app gets ALL movies and then displays them based on the search bar filter. Instead, it should only fetch the movies which match the filter. It should then perform a new query with each change to the filter.
 3. Make search/highting not be case sensitive
+4. Sort is only in ascending order, add desending as well
+5. Table Actions should be restricted by user roles
