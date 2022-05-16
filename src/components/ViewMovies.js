@@ -1,10 +1,14 @@
 import '../styles/ViewMovies.css';
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
+import DeleteMovieModal from './DeleteMovieModal';
 
 function ViewMovies({movies, filter}) {
     const [sortBy, setSortBy] = useState('name');
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [movieToDelete, setMovieToDelete] = useState()
 
+    // Sort the displayed table
     function dynamicSort(property) {
         var sortOrder = 1;
         if(property[0] === "-") {
@@ -20,36 +24,57 @@ function ViewMovies({movies, filter}) {
         }
     }
 
-    return (
-        <Table hover borderless className='table'>
-            {/* Column Names */}
-            <thead>
-                <tr>
-                    <th onClick={() => setSortBy('name')}>Name</th>
-                    <th onClick={() => setSortBy('director')}>Director</th>
-                    <th onClick={() => setSortBy('year')}>Year</th>
-                    <th onClick={() => setSortBy('genre')}>Genre</th>
-                    <th onClick={() => setSortBy('rating')}>Rating</th>
-                </tr>
-            </thead>
+    function deleteMovie(movieId) {
 
-            {/* Movies List */}
-            <tbody>
-                {movies.length > 0 && movies.sort(dynamicSort(sortBy)).map(movie => {
-                    console.log(movie)
-                    if (movie.name.includes(filter) ||
-                        movie.director.includes(filter) ||
-                        movie.genre.includes(filter)) {
-                        return <MovieRow movie={movie} filter={filter} key={movie.id} />
-                    }
-                    return <></>
-                })}
-            </tbody>
-        </Table>
+    }
+
+    return (
+        <>
+            <Table hover borderless className='table'>
+                {/* Column Names */}
+                <thead>
+                    <tr>
+                        <th onClick={() => setSortBy('name')}>Name</th>
+                        <th onClick={() => setSortBy('director')}>Director</th>
+                        <th onClick={() => setSortBy('year')}>Year</th>
+                        <th onClick={() => setSortBy('genre')}>Genre</th>
+                        <th onClick={() => setSortBy('rating')}>Rating</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                {/* Movies List */}
+                <tbody>
+                    {movies.length > 0 && movies.sort(dynamicSort(sortBy)).map(movie => {
+                        console.log(movie)
+                        if (movie.name.includes(filter) ||
+                            movie.director.includes(filter) ||
+                            movie.genre.includes(filter)) {
+                            return <MovieRow
+                                        movie={movie}
+                                        filter={filter}
+                                        key={movie.id}
+                                        setIsDeleteModalOpen={setIsDeleteModalOpen}
+                                        setMovieToDelete={setMovieToDelete}
+                                    />
+                        }
+                        return <></>
+                    })}
+                </tbody>
+            </Table>
+
+            <DeleteMovieModal movieToDelete={movieToDelete} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} />
+        </>
     );
 }
 
-function MovieRow({movie, filter, key}) {
+function MovieRow({movie, filter, key, setIsDeleteModalOpen, setMovieToDelete}) {
+    
+    function deleteMovie(movie) {
+        setMovieToDelete(movie);
+        setIsDeleteModalOpen(true);
+    }
+
     return (
         <tr key={key}>
             <td>
@@ -71,6 +96,9 @@ function MovieRow({movie, filter, key}) {
                     <>⭐️</>
                 ))}
             </td>
+
+            {/* Actions */}
+            <td onClick={() => deleteMovie(movie)}>🗑</td>
         </tr>
     );
 }

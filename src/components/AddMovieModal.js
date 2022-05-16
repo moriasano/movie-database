@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
-// import { DataStore } from '@aws-amplify/datastore';
-// import { Movies } from '../models';
-
 import { API } from 'aws-amplify';
 import { createMovies } from '../graphql/mutations';
 
