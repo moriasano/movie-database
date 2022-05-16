@@ -1,40 +1,41 @@
 import '../styles/ViewMovies.css';
+import { useState } from 'react';
 import { Table } from 'react-bootstrap';
 
 function ViewMovies({movies, filter}) {
-    // movies = [
-    //     {
-    //         name: "Mori",
-    //         director: "Momomomo",
-    //         year: "mori",
-    //         genre: "mori",
-    //         rating: "5"
-    //     },
-    //     {
-    //         name: "taiyp",
-    //         director: "taiyp",
-    //         year: "taiyp",
-    //         genre: "taiyo",
-    //         rating: "3"
-    //     }
-    // ]
+    const [sortBy, setSortBy] = useState('name');
+
+    function dynamicSort(property) {
+        var sortOrder = 1;
+        if(property[0] === "-") {
+            sortOrder = -1;
+            property = property.substr(1);
+        }
+        return function (a,b) {
+            /* next line works with strings and numbers, 
+             * and you may want to customize it to your needs
+             */
+            var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+            return result * sortOrder;
+        }
+    }
 
     return (
         <Table hover borderless className='table'>
             {/* Column Names */}
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Director</th>
-                    <th>Year</th>
-                    <th>Genre</th>
-                    <th>Rating</th>
+                    <th onClick={() => setSortBy('name')}>Name</th>
+                    <th onClick={() => setSortBy('director')}>Director</th>
+                    <th onClick={() => setSortBy('year')}>Year</th>
+                    <th onClick={() => setSortBy('genre')}>Genre</th>
+                    <th onClick={() => setSortBy('rating')}>Rating</th>
                 </tr>
             </thead>
 
             {/* Movies List */}
             <tbody>
-                {movies.length > 0 && movies.map(movie => {
+                {movies.length > 0 && movies.sort(dynamicSort(sortBy)).map(movie => {
                     console.log(movie)
                     if (movie.name.includes(filter) ||
                         movie.director.includes(filter) ||

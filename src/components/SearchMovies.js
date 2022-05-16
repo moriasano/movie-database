@@ -28,6 +28,7 @@ function SearchMovies() {
         <div className="body">
             
             <Form className="d-flex">
+             
                 <FormControl
                     size="lg"
                     type="search"

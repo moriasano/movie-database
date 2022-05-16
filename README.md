@@ -12,12 +12,14 @@ GraphQL (for APIs)
 AWS Congnito (for user managment)
 
 Web UI Structure:
+```
 App.js
 -- Navigation.js
 -- Home.js
 ---- SearchMovies.js
 ------ ViewMovies.js
 ------ AddMovieModal.js
+```
 
 Possible Improvments: 
 1. Delete Movie from UI
