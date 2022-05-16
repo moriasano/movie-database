@@ -4,13 +4,13 @@ This project is a full-stack web app that allows users to browse a database of m
 
 View the live app here: https://master.d1zqf8xdvwv29w.amplifyapp.com/  
 
-Tools Used:
-* react-create-app 
-* react-boostrap
-* AWS Amplify (for hosting)
-* DynamoDB (to store movie database in AWS)
-* GraphQL (for APIs)
-* AWS Congnito (for user managment)
+Tools Used:  
+* react-create-app  
+* react-boostrap  
+* AWS Amplify (for hosting)  
+* DynamoDB (to store movie database in AWS)  
+* GraphQL (for APIs)  
+* AWS Congnito (for user managment)  
 
 Web UI Structure:
 ```
