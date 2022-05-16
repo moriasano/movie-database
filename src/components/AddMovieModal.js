@@ -22,6 +22,7 @@ function AddMovieModal({isAddModalOpen, setIsAddModalOpen}) {
         if(inputValidation()) {
             await API.graphql({ query: createMovies, variables: { input: formData } });
             setFormData(initialFormState);
+            setIsAddModalOpen(false);
         }
     }
 

@@ -34,11 +34,12 @@ function ViewMovies({movies, filter}) {
 
             {/* Movies List */}
             <tbody>
-                {movies.map(movie => {
+                {movies.length > 0 && movies.map(movie => {
+                    console.log(movie)
                     if (movie.name.includes(filter) ||
                         movie.director.includes(filter) ||
                         movie.genre.includes(filter)) {
-                        return <MovieRow movie={movie} filter={filter} key={movie.key} />
+                        return <MovieRow movie={movie} filter={filter} key={movie.id} />
                     }
                     return <></>
                 })}

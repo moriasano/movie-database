@@ -10,19 +10,32 @@ import { listMovies } from '../graphql/queries';
 
 
 function SearchMovies() {
-    const [movies, setMovies] = useState("");
+    const [movies, setMovies] = useState([]);
     const [searchField, setSearchField] = useState("");
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     // Fetch Movies
     async function fetchMovies() {
         const apiData = await API.graphql({ query: listMovies });
-        console.log(apiData.data.listMovies.items);
-        setMovies(JSON.stringify(apiData.data.listMovies.items)); // TODO: not sure why, but we need this here
+        // console.log(apiData.data.listMovies.items);
+
+        // let movieArray = []
+        // for (var i in apiData.data.listMovies.items) {
+        //     movieArray.push({
+        //         name: apiData.data.listMovies.items[i].name,
+        //         director: apiData.data.listMovies.items[i].director,
+        //         year: apiData.data.listMovies.items[i].year,
+        //         genre: apiData.data.listMovies.items[i].genre,
+        //         rating: apiData.data.listMovies.items[i].rating,
+        //     });
+        // }
+        // console.log(movieArray);
+
+        setMovies(apiData.data.listMovies.items); // TODO: not sure why, but we need this here
     }
     useEffect(() => {
         fetchMovies();
-    }, []);
+    }, [isAddModalOpen]);
     
 
     return (
@@ -41,7 +54,7 @@ function SearchMovies() {
                 <Button className="button" variant="dark" onClick={e => setIsAddModalOpen(true)}>+</Button>
             </Form>
 
-            <ViewMovies movies={JSON.parse(movies)} filter={searchField} />
+            <ViewMovies movies={movies} filter={searchField} />
 
             <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen}/>
         </div>
