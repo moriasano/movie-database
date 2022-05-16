@@ -41,7 +41,8 @@ function SearchMovies() {
                 <Button className="button" variant="dark" onClick={e => setIsAddModalOpen(true)}>+</Button>
             </Form>
 
-            <ViewMovies movies={movies} filter={searchField} />
+            &nbsp;&nbsp;
+            <ViewMovies movies={movies} filter={searchField} setMovies={setMovies} />
 
             <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen}/>
         </div>

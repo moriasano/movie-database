@@ -9,5 +9,6 @@ td:hover {
 }
 
 .highlight {
-    color: orange;
+    /* color: orange; */
+    background-color: #FFFF00;
 }

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import DeleteMovieModal from './DeleteMovieModal';
 
-function ViewMovies({movies, filter}) {
+function ViewMovies({movies, setMovies, filter}) {
     const [sortBy, setSortBy] = useState('name');
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [movieToDelete, setMovieToDelete] = useState()
@@ -27,7 +27,7 @@ function ViewMovies({movies, filter}) {
                 {/* Column Names */}
                 <thead>
                     <tr>
-                        <th onClick={() => setSortBy('name')}>
+                        <th onClick={() => setSortBy('name')} width="25%">
                             {sortBy === "name" && (
                                 <>🔻</>
                             )}
@@ -81,7 +81,7 @@ function ViewMovies({movies, filter}) {
                 </tbody>
             </Table>
 
-            <DeleteMovieModal movieToDelete={movieToDelete} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} />
+            <DeleteMovieModal movieToDelete={movieToDelete} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} movies={movies} setMovies={setMovies} />
         </>
     );
 }
