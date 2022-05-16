@@ -24,21 +24,42 @@ function ViewMovies({movies, filter}) {
         }
     }
 
-    function deleteMovie(movieId) {
-
-    }
-
     return (
         <>
             <Table hover borderless className='table'>
                 {/* Column Names */}
                 <thead>
                     <tr>
-                        <th onClick={() => setSortBy('name')}>Name</th>
-                        <th onClick={() => setSortBy('director')}>Director</th>
-                        <th onClick={() => setSortBy('year')}>Year</th>
-                        <th onClick={() => setSortBy('genre')}>Genre</th>
-                        <th onClick={() => setSortBy('rating')}>Rating</th>
+                        <th onClick={() => setSortBy('name')}>
+                            {sortBy === "name" && (
+                                <>🔻</>
+                            )}
+                            Name
+                        </th>
+                        <th onClick={() => setSortBy('director')}>
+                            {sortBy === "director" && (
+                                <>🔻</>
+                            )}
+                            Director
+                        </th>
+                        <th onClick={() => setSortBy('year')}>
+                            {sortBy === "year" && (
+                                <>🔻</>
+                            )}
+                            Year
+                        </th>
+                        <th onClick={() => setSortBy('genre')}>
+                            {sortBy === "genre" && (
+                                <>🔻</>
+                            )}
+                            Genre
+                        </th>
+                        <th onClick={() => setSortBy('rating')}>
+                            {sortBy === "rating" && (
+                                <>🔻</>
+                            )}
+                            Rating
+                        </th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -70,7 +91,7 @@ function ViewMovies({movies, filter}) {
 
 function MovieRow({movie, filter, key, setIsDeleteModalOpen, setMovieToDelete}) {
     
-    function deleteMovie(movie) {
+    function deleteMovie() {
         setMovieToDelete(movie);
         setIsDeleteModalOpen(true);
     }
@@ -98,7 +119,7 @@ function MovieRow({movie, filter, key, setIsDeleteModalOpen, setMovieToDelete}) 
             </td>
 
             {/* Actions */}
-            <td onClick={() => deleteMovie(movie)}>🗑</td>
+            <td onClick={() => deleteMovie()}>🗑</td>
         </tr>
     );
 }
