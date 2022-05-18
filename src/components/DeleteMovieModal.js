@@ -3,7 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { API } from 'aws-amplify';
 import { deleteMovies } from '../graphql/mutations';
 
-function DeleteMovieModal({movieToDelete, isDeleteModalOpen, setIsDeleteModalOpen, movies, setMovies}) {
+function DeleteMovieModal({selectedMovie, isDeleteModalOpen, setIsDeleteModalOpen, movies, setMovies}) {
 
     // TODO: need to get this API working.
     // Error: "Conflict Resolver Rejects Mutation"
@@ -24,15 +24,15 @@ function DeleteMovieModal({movieToDelete, isDeleteModalOpen, setIsDeleteModalOpe
             {/* Body */}
             <Modal.Body>
                 <div>Are you sure you wish to delete the following movie?</div>
-                {movieToDelete !== undefined && (
-                    <div style={{fontSize: "x-large", textAlign: "center"}}>{movieToDelete.name}</div>
+                {selectedMovie !== undefined && (
+                    <div style={{fontSize: "x-large", textAlign: "center"}}>{selectedMovie.name}</div>
                 )}
             </Modal.Body>
 
             {/* Footer */}
             <Modal.Footer>
                 <Button variant="dark" onClick={e => setIsDeleteModalOpen(false)}>Never mind...</Button>
-                {/* <Button variant="dark" onClick={() => deleteMovie(movieToDelete)}>Confirm</Button> */}
+                {/* <Button variant="dark" onClick={() => deleteMovie(selectedMovie)}>Confirm</Button> */}
                 <Button variant="dark" onClick={() => alert("delete functionality in progress")}>Confirm</Button>
             </Modal.Footer>
         </Modal>

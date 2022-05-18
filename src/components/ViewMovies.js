@@ -2,11 +2,13 @@ import '../styles/ViewMovies.css';
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import DeleteMovieModal from './DeleteMovieModal';
+import EditMovieModal from './EditMovieModal';
 
 function ViewMovies({movies, setMovies, filter}) {
     const [sortBy, setSortBy] = useState('name');
+    const [selectedMovie, setSelectedMovie] = useState()
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    const [movieToDelete, setMovieToDelete] = useState()
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     // Sort the displayed table
     function dynamicSort(property) {
@@ -72,8 +74,9 @@ function ViewMovies({movies, setMovies, filter}) {
                                         movie={movie}
                                         filter={filter}
                                         key={movie.id}
+                                        setSelectedMovie={setSelectedMovie}
+                                        setIsEditModalOpen={setIsEditModalOpen}
                                         setIsDeleteModalOpen={setIsDeleteModalOpen}
-                                        setMovieToDelete={setMovieToDelete}
                                     />
                         }
                         return <></>
@@ -81,16 +84,22 @@ function ViewMovies({movies, setMovies, filter}) {
                 </tbody>
             </Table>
 
-            <DeleteMovieModal movieToDelete={movieToDelete} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} movies={movies} setMovies={setMovies} />
+            <DeleteMovieModal selectedMovie={selectedMovie} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} movies={movies} setMovies={setMovies} />
+            {/* <EditMovieModal selectedMovie={selectedMovie} isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} /> */}
         </>
     );
 }
 
-function MovieRow({movie, filter, key, setIsDeleteModalOpen, setMovieToDelete}) {
+function MovieRow({movie, filter, key, setSelectedMovie, setIsEditModalOpen, setIsDeleteModalOpen}) {
     
     function deleteMovie() {
-        setMovieToDelete(movie);
+        setSelectedMovie(movie);
         setIsDeleteModalOpen(true);
+    }
+
+    function editMovie() {
+        setSelectedMovie(movie);
+        setIsEditModalOpen(true);
     }
 
     return (
@@ -116,7 +125,13 @@ function MovieRow({movie, filter, key, setIsDeleteModalOpen, setMovieToDelete}) 
             </td>
 
             {/* Actions */}
-            <td className="clickable" onClick={() => deleteMovie()}>🗑</td>
+            <td>
+                {/* <span className="clickable" onClick={() => editMovie()}>✏️</span> */}
+                <span className="clickable" onClick={() => alert("Edit Movie in Progress")}>✏️</span> 
+                &nbsp;&nbsp;&nbsp;
+                <span className="clickable" onClick={() => deleteMovie()}>🗑</span>
+            </td>
+            
         </tr>
     );
 }
