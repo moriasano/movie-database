@@ -27,7 +27,7 @@ Possible Improvments:
 1. Currently, the app gets ALL movies and then displays them based on the search bar filter. Instead, it should only fetch the movies which match the filter. It should then perform a new query with each change to the filter.
 2. Table Actions should be restricted by user roles
 3. Pagnianation on Movies table
-4. Add WebAnalytics
+4. Create Enum for genre's
 
 Issues:
 1. DynamoDB query fails for edit & delete
