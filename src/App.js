@@ -20,6 +20,8 @@ function App() {
     trackUserId();
   }, []);
 
+  // Analytics Code
+  // Taken from: http://aws-react-amplify.ws.kabits.com/adding-analytics/
   async function trackUserId() {
     try {
       const { attributes } = await Auth.currentAuthenticatedUser();
