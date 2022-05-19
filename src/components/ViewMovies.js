@@ -85,7 +85,7 @@ function ViewMovies({movies, setMovies, filter}) {
             </Table>
 
             <DeleteMovieModal selectedMovie={selectedMovie} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} movies={movies} setMovies={setMovies} />
-            {/* <EditMovieModal selectedMovie={selectedMovie} isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} /> */}
+            <EditMovieModal selectedMovie={selectedMovie} isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} />
         </>
     );
 }
@@ -127,7 +127,7 @@ function MovieRow({movie, filter, key, setSelectedMovie, setIsEditModalOpen, set
             {/* Actions */}
             <td>
                 {/* <span className="clickable" onClick={() => editMovie()}>✏️</span> */}
-                <span className="clickable" onClick={() => alert("Edit Movie in Progress")}>✏️</span> 
+                <span className="clickable" onClick={() => editMovie()}>✏️</span> 
                 &nbsp;&nbsp;&nbsp;
                 <span className="clickable" onClick={() => deleteMovie()}>🗑</span>
             </td>
