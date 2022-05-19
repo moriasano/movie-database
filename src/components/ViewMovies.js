@@ -6,6 +6,7 @@ import EditMovieModal from './EditMovieModal';
 
 function ViewMovies({movies, setMovies, filter}) {
     const [sortBy, setSortBy] = useState('name');
+    const [reverseSort, setReverseSort] = useState(false);
     const [selectedMovie, setSelectedMovie] = useState()
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -23,41 +24,45 @@ function ViewMovies({movies, setMovies, filter}) {
         }
     }
 
+    // Determine if lists are in ascending or descending order
+    function sortWrapper(sortMe, reverse) {
+        var filtered = movies.sort(dynamicSort(sortBy));
+        if(reverse) {
+            filtered.reverse();
+        }
+        return filtered;
+    }
+
     return (
         <>
-            <Table hover borderless className='table'>
+            <Table hover borderless className='table' size='sm'>
                 {/* Column Names */}
                 <thead>
                     <tr>
                         <th onClick={() => setSortBy('name')} width="25%">
-                            {sortBy === "name" && (
-                                <>🔻</>
-                            )}
-                            Name
+                            {sortBy === "name" ? (
+                                <SortIndicator reverseSort={reverseSort} setReverseSort={setReverseSort} text="Name" />
+                            ) : <>Name</>}
                         </th>
                         <th onClick={() => setSortBy('director')}>
-                            {sortBy === "director" && (
-                                <>🔻</>
-                            )}
-                            Director
+                            {sortBy === "director" ? (
+                                <SortIndicator reverseSort={reverseSort} setReverseSort={setReverseSort} text="Director" />
+                            ) : <>Director</>}
                         </th>
                         <th onClick={() => setSortBy('year')}>
-                            {sortBy === "year" && (
-                                <>🔻</>
-                            )}
-                            Year
+                            {sortBy === "year" ? (
+                                <SortIndicator reverseSort={reverseSort} setReverseSort={setReverseSort} text="Year" />
+                            ) : <>Year</>}
                         </th>
                         <th onClick={() => setSortBy('genre')}>
-                            {sortBy === "genre" && (
-                                <>🔻</>
-                            )}
-                            Genre
+                            {sortBy === "genre" ? (
+                                <SortIndicator reverseSort={reverseSort} setReverseSort={setReverseSort} text="Genre" />
+                            ) : <>Genre</>}
                         </th>
                         <th onClick={() => setSortBy('rating')}>
-                            {sortBy === "rating" && (
-                                <>🔻</>
-                            )}
-                            Rating
+                            {sortBy === "rating" ? (
+                                <SortIndicator reverseSort={reverseSort} setReverseSort={setReverseSort} text="Rating" />
+                            ) : <>Rating</>}
                         </th>
                         <th>Actions</th>
                     </tr>
@@ -65,7 +70,7 @@ function ViewMovies({movies, setMovies, filter}) {
 
                 {/* Movies List */}
                 <tbody>
-                    {movies.length > 0 && movies.sort(dynamicSort(sortBy)).map(movie => {
+                    {movies.length > 0 && sortWrapper(movies, reverseSort).map(movie => {
                         console.log(movie)
                         if (movie.name.includes(filter) ||
                             movie.director.includes(filter) ||
@@ -148,6 +153,23 @@ function HighlightText({text, highlightStr}) {
             <span>{normal[0]}</span>
             <span className='highlight'>{highlightStr}</span>
             <span>{normal[1]}</span>
+        </>
+    );
+}
+
+function SortIndicator({reverseSort, setReverseSort, text}) {
+
+    function toggleSort() {
+        setReverseSort(!reverseSort);
+    }
+    
+    return (
+        <>
+            {reverseSort ? 
+                <span onClick={() => toggleSort()}>🔺 {text}</span>
+                :
+                <span onClick={() => toggleSort()}>🔻 {text}</span>
+            }
         </>
     );
 }
