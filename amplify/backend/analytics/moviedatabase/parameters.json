@@ -1,0 +1,21 @@
+{
+    "appName": "moviedatabase",
+    "roleName": "pinpointLambdaRolef1a7f049",
+    "cloudformationPolicyName": "cloudformationPolicyf1a7f049",
+    "cloudWatchPolicyName": "cloudWatchPolicyf1a7f049",
+    "pinpointPolicyName": "pinpointPolicyf1a7f049",
+    "authPolicyName": "pinpoint_amplify_f1a7f049",
+    "unauthPolicyName": "pinpoint_amplify_f1a7f049",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

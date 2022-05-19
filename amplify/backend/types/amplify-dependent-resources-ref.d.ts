@@ -16,5 +16,12 @@ export type AmplifyDependentResourcesAttributes = {
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
         }
+    },
+    "analytics": {
+        "moviedatabase": {
+            "Region": "string",
+            "Id": "string",
+            "appName": "string"
+        }
     }
 }

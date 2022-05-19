@@ -1,4 +1,3 @@
-import { SliderField } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 

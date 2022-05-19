@@ -47,5 +47,11 @@
         }
       }
     }
+  },
+  "analytics": {
+    "moviedatabase": {
+      "service": "Pinpoint",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }
