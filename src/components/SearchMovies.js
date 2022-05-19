@@ -27,7 +27,7 @@ function SearchMovies() {
     return (
         <div className="body">
             
-            <Form className="d-flex">
+            <Form className="d-flex justify-content-center">
              
                 <FormControl
                     size="lg"
@@ -36,6 +36,8 @@ function SearchMovies() {
                     onChange={ e => setSearchField(e.target.value) }
                     placeholder="Starwars..."
                     aria-label="Search for movies"
+                    className="d-flex"
+                    style={{width: "88%"}}
                 />
                 &nbsp;&nbsp;
                 <Button className="button" variant="dark" onClick={e => setIsAddModalOpen(true)}>+</Button>
