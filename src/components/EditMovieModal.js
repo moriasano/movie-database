@@ -16,16 +16,13 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
     const [formData, setFormData] = useState(initialFormState);
 
     useEffect(() => {
-        if(selectedMovie !== undefined) {
-            setFormData({
-                name: selectedMovie.name,
-                director: selectedMovie.director,
-                year: selectedMovie.year,
-                genre: selectedMovie.genre,
-                rating: selectedMovie.rating
-            })
-        }
-
+        setFormData({
+            name:     selectedMovie?.name,
+            director: selectedMovie?.director,
+            year:     selectedMovie?.year,
+            genre:    selectedMovie?.genre,
+            rating:   selectedMovie?.rating
+        })
     }, [selectedMovie])
 
     // async function saveMovie() {
@@ -57,9 +54,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
 
             {/* Header */}
             <Modal.Header closeButton>
-                {selectedMovie !== undefined && (
-                    <Modal.Title>Edit Movie: {selectedMovie.name}</Modal.Title>
-                )}
+                <Modal.Title>Edit Movie: {selectedMovie?.name}</Modal.Title>
             </Modal.Header>
 
             {/* Body */}
@@ -72,7 +67,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
                         <Form.Label column sm="3">Name</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={formData.name}
+                                value={formData?.name}
                                 type="text"
                                 placeholder="Name"
                                 onChange={e => setFormData({ ...formData, 'name': e.target.value})}
@@ -85,7 +80,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
                         <Form.Label column sm="3">Director</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={formData.director}
+                                value={formData?.director}
                                 type="text"
                                 placeholder="Director"
                                 onChange={e => setFormData({ ...formData, 'director': e.target.value})}
@@ -98,7 +93,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
                         <Form.Label column sm="3">Release Year</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={formData.year}
+                                value={formData?.year}
                                 type="number"
                                 placeholder={2000}
                                 onChange={e => setFormData({ ...formData, 'year': e.target.value})}
@@ -111,7 +106,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
                         <Form.Label column sm="3">Genre</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={formData.genre}
+                                value={formData?.genre}
                                 type="text"
                                 placeholder="Action"
                                 onChange={e => setFormData({ ...formData, 'genre': e.target.value})}
@@ -124,7 +119,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
                         <Form.Label column sm="3">Rating</Form.Label>
                         <Col>
                             <Form.Control column
-                                value={formData.rating}
+                                value={formData?.rating}
                                 type="number"
                                 placeholder={5}
                                 onChange={e => setFormData({ ...formData, 'rating': e.target.value})}
