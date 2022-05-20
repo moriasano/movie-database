@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 
-// import { API } from 'aws-amplify';
-// import { createMovies } from '../graphql/mutations';
+import { API } from 'aws-amplify';
+import { updateMovies } from '../graphql/mutations';
 
 const initialFormState = {
     name: '',
@@ -12,42 +12,53 @@ const initialFormState = {
     rating: '',
 }
 
-function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
+function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen, movies, setMovies}) {
     const [formData, setFormData] = useState(initialFormState);
 
     useEffect(() => {
-        setFormData({
-            name:     selectedMovie?.name,
-            director: selectedMovie?.director,
-            year:     selectedMovie?.year,
-            genre:    selectedMovie?.genre,
-            rating:   selectedMovie?.rating
-        })
+        if (selectedMovie !== undefined) { 
+            setFormData({
+                id:       selectedMovie?.id,
+                name:     selectedMovie?.name,
+                director: selectedMovie?.director,
+                year:     selectedMovie?.year,
+                genre:    selectedMovie?.genre,
+                rating:   selectedMovie?.rating,
+                _version: selectedMovie?._version,
+            })
+        }
     }, [selectedMovie])
 
-    // async function saveMovie() {
-    //     if(inputValidation()) {
-    //         await API.graphql({ query: createMovies, variables: { input: formData } });
-    //         setFormData(initialFormState);
-    //         setIsAddModalOpen(false);
-    //     }
-    // }
+    async function updateMovie() {
+        if(inputValidation()) {
+            await API.graphql({ query: updateMovies, variables: { input: formData } });
 
-    // function inputValidation() {
-    //     if(formData.name === "" ||
-    //        formData.director === "" ||
-    //        formData.year === "" ||
-    //        formData.genre === "" ||
-    //        formData.rating === "") {
-    //         alert("You must fill out all movie fields");
-    //         return false;
-    //     }
-    //     else if (formData.year < 1800 || formData.year > 2040){
-    //         alert("Valid years are 1800 to 2040");
-    //         return false;
-    //     }
-    //     return true;
-    // }
+            // Update the displayed movies
+            var newMoviesArray = movies.filter(movie => movie.id !== selectedMovie.id);
+            newMoviesArray.push(formData);
+            setMovies(newMoviesArray);
+
+            // Revert & Close the Modal
+            setFormData(initialFormState);
+            setIsEditModalOpen(false);
+        }
+    }
+
+    function inputValidation() {
+        if(formData.name === "" ||
+           formData.director === "" ||
+           formData.year === "" ||
+           formData.genre === "" ||
+           formData.rating === "") {
+            alert("You must fill out all movie fields");
+            return false;
+        }
+        else if (formData.year < 1800 || formData.year > 2040){
+            alert("Valid years are 1800 to 2040");
+            return false;
+        }
+        return true;
+    }
 
     return (
         <Modal show={isEditModalOpen} onHide={e => setIsEditModalOpen(false)}>
@@ -132,7 +143,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen}) {
 
             {/* Footer */}
             <Modal.Footer>
-                <Button variant="dark" onClick={e => alert('Edit Functionality in progress')}>Save</Button>
+                <Button variant="dark" onClick={updateMovie}>Save</Button>
             </Modal.Footer>
         </Modal>
     );

@@ -90,7 +90,7 @@ function ViewMovies({movies, setMovies, filter}) {
             </Table>
 
             <DeleteMovieModal selectedMovie={selectedMovie} isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} movies={movies} setMovies={setMovies} />
-            <EditMovieModal selectedMovie={selectedMovie} isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} />
+            <EditMovieModal selectedMovie={selectedMovie} isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} movies={movies} setMovies={setMovies} />
         </>
     );
 }
