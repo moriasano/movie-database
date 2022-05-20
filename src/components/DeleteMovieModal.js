@@ -5,12 +5,17 @@ import { deleteMovies } from '../graphql/mutations';
 
 function DeleteMovieModal({selectedMovie, isDeleteModalOpen, setIsDeleteModalOpen, movies, setMovies}) {
 
-    // TODO: need to get this API working.
-    // Error: "Conflict Resolver Rejects Mutation"
-    async function deleteMovie({ id }) {
-        // const newMoviesArray = movies.filter(movie => movie.id !== id);
-        // setMovies(newMoviesArray);
-        await API.graphql({ query: deleteMovies, variables: { input: { id } }});
+    async function deleteMovie() {
+        var movieToDelete = {
+            id: selectedMovie?.id,
+            _version: selectedMovie?._version,
+        }
+        await API.graphql({ query: deleteMovies, variables: { input: movieToDelete }});
+
+        // Remove from the page without re-rendering
+        const newMoviesArray = movies.filter(movie => movie.id !== selectedMovie.id);
+        setMovies(newMoviesArray);
+        setIsDeleteModalOpen(false);
     }
    
     return (
@@ -33,7 +38,7 @@ function DeleteMovieModal({selectedMovie, isDeleteModalOpen, setIsDeleteModalOpe
             <Modal.Footer>
                 <Button variant="dark" onClick={e => setIsDeleteModalOpen(false)}>Never mind...</Button>
                 {/* <Button variant="dark" onClick={() => deleteMovie(selectedMovie)}>Confirm</Button> */}
-                <Button variant="dark" onClick={() => alert("delete functionality in progress")}>Confirm</Button>
+                <Button variant="dark" onClick={deleteMovie}>Confirm</Button>
             </Modal.Footer>
         </Modal>
     );

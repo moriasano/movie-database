@@ -72,9 +72,10 @@ function ViewMovies({movies, setMovies, filter}) {
                 <tbody>
                     {movies.length > 0 && sortWrapper(movies, reverseSort).map(movie => {
                         console.log(movie)
-                        if (movie.name.includes(filter) ||
-                            movie.director.includes(filter) ||
-                            movie.genre.includes(filter)) {
+                        if (movie._deleted !== true &&
+                            (movie.name.includes(filter) ||
+                             movie.director.includes(filter) ||
+                             movie.genre.includes(filter))) {
                             return <MovieRow
                                         movie={movie}
                                         filter={filter}

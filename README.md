@@ -30,6 +30,5 @@ Possible Improvments:
 4. Create Enum for genre's
 
 Issues:
-1. DynamoDB query fails for edit & delete
-2. Sorting is case-sensitize (i.e, lower-case items are always AFTER uppercase items)
-3. Searchbar is case-sensitize
+1. Sorting is case-sensitize (i.e, lower-case items are always AFTER uppercase items)
+2. Searchbar is case-sensitize
