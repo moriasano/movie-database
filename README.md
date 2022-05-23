@@ -28,6 +28,7 @@ Possible Improvments:
 2. Table Actions should be restricted by user roles
 3. Pagnianation on Movies table
 4. Create Enum for genre's
+5. Reduce the number of database queries!!!
 
 Issues:
 1. Sorting is case-sensitize (i.e, lower-case items are always AFTER uppercase items)

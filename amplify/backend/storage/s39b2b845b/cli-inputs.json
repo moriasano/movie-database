@@ -1,0 +1,12 @@
+{
+  "resourceName": "s39b2b845b",
+  "policyUUID": "9b2b845b",
+  "bucketName": "movie-storge",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

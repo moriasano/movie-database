@@ -71,7 +71,6 @@ function ViewMovies({movies, setMovies, filter}) {
                 {/* Movies List */}
                 <tbody>
                     {movies.length > 0 && sortWrapper(movies, reverseSort).map(movie => {
-                        console.log(movie)
                         if (movie._deleted !== true &&
                             (movie.name.includes(filter) ||
                              movie.director.includes(filter) ||

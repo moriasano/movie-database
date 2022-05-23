@@ -20,9 +20,11 @@ function SearchMovies() {
         setMovies(apiData.data.listMovies.items);
     }
     useEffect(() => {
-        fetchMovies();
-    }, [isAddModalOpen]);
-    
+        // Only fetch the the modal is being closed (or else it would query twice)
+        if (!isAddModalOpen) {
+            fetchMovies();
+        }
+    }, [isAddModalOpen]); // Re-fetch when a new movie is added  
 
     return (
         <div className="body">
@@ -46,7 +48,7 @@ function SearchMovies() {
             &nbsp;&nbsp;
             <ViewMovies movies={movies} filter={searchField} setMovies={setMovies} />
 
-            <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen}/>
+            <AddMovieModal isAddModalOpen={isAddModalOpen} setIsAddModalOpen={setIsAddModalOpen} />
         </div>
     );
 }
