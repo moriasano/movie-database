@@ -1,7 +1,6 @@
+import { API } from 'aws-amplify';
 import { useEffect, useState } from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
-
-import { API } from 'aws-amplify';
 import { updateMovies } from '../graphql/mutations';
 
 const initialFormState = {

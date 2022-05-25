@@ -1,6 +1,6 @@
-import '../styles/ViewMovies.css';
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
+import '../styles/ViewMovies.css';
 import DeleteMovieModal from './DeleteMovieModal';
 import EditMovieModal from './EditMovieModal';
 

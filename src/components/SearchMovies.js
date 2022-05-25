@@ -1,13 +1,10 @@
-import '../styles/SearchMovies.css';
-
-import { useState, useEffect } from 'react';
+import { API } from 'aws-amplify';
+import { useEffect, useState } from 'react';
 import { Button, Form, FormControl } from 'react-bootstrap';
+import { listMovies } from '../graphql/queries';
+import '../styles/SearchMovies.css';
 import AddMovieModal from './AddMovieModal';
 import ViewMovies from './ViewMovies';
-
-import { API } from 'aws-amplify';
-import { listMovies } from '../graphql/queries';
-
 
 function SearchMovies() {
     const [movies, setMovies] = useState([]);

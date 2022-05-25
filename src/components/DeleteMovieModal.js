@@ -1,6 +1,5 @@
-import { Button, Modal } from 'react-bootstrap';
-
 import { API } from 'aws-amplify';
+import { Button, Modal } from 'react-bootstrap';
 import { deleteMovies } from '../graphql/mutations';
 
 function DeleteMovieModal({selectedMovie, isDeleteModalOpen, setIsDeleteModalOpen, movies, setMovies}) {

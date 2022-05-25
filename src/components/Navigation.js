@@ -1,8 +1,7 @@
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
 function Navigation({signOut, username}) {
-
     return (
         <div>
             <Navbar collapseOnSelect fixed="top" expand="sm" bg='dark' variant='dark'>

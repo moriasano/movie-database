@@ -1,7 +1,6 @@
 import '../styles/Home.css';
 import SearchMovies from './SearchMovies';
 
-
 function Home() {
     return (
         <div className="body">
