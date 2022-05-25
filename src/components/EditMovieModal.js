@@ -34,7 +34,7 @@ function EditMovieModal({selectedMovie, isEditModalOpen, setIsEditModalOpen, mov
             await API.graphql({ query: updateMovies, variables: { input: formData } });
 
             // Update the displayed movies
-            var newMoviesArray = movies.filter(movie => movie.id !== selectedMovie.id);
+            let newMoviesArray = movies.filter(movie => movie.id !== selectedMovie.id);
             newMoviesArray.push(formData);
             setMovies(newMoviesArray);
 

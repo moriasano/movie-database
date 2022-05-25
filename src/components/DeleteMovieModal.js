@@ -6,7 +6,7 @@ import { deleteMovies } from '../graphql/mutations';
 function DeleteMovieModal({selectedMovie, isDeleteModalOpen, setIsDeleteModalOpen, movies, setMovies}) {
 
     async function deleteMovie() {
-        var movieToDelete = {
+        let movieToDelete = {
             id: selectedMovie?.id,
             _version: selectedMovie?._version,
         }

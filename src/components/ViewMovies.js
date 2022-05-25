@@ -13,20 +13,20 @@ function ViewMovies({movies, setMovies, filter}) {
 
     // Sort the displayed table
     function dynamicSort(property) {
-        var sortOrder = 1;
+        let sortOrder = 1;
         if(property[0] === "-") {
             sortOrder = -1;
             property = property.substr(1);
         }
         return function (a,b) {
-            var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+            let result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
             return result * sortOrder;
         }
     }
 
     // Determine if lists are in ascending or descending order
     function sortWrapper(sortMe, reverse) {
-        var filtered = movies.sort(dynamicSort(sortBy));
+        let filtered = movies.sort(dynamicSort(sortBy));
         if(reverse) {
             filtered.reverse();
         }
@@ -107,7 +107,7 @@ function MovieRow({movie, filter, setSelectedMovie, setIsEditModalOpen, setIsDel
     }
 
     return (
-        <tr key={movie.title}>
+        <tr key={movie.id}>
             <td>
                 <HighlightText text={movie.name} highlightStr={filter}/>
             </td>
@@ -146,7 +146,7 @@ function HighlightText({text, highlightStr}) {
         return <>{text}</>
     }
 
-    var normal = text.split(highlightStr);
+    let normal = text.split(highlightStr);
     return (
         <>
             <span>{normal[0]}</span>
