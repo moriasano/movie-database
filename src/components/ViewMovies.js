@@ -78,7 +78,6 @@ function ViewMovies({movies, setMovies, filter}) {
                             return <MovieRow
                                         movie={movie}
                                         filter={filter}
-                                        key={movie.id}
                                         setSelectedMovie={setSelectedMovie}
                                         setIsEditModalOpen={setIsEditModalOpen}
                                         setIsDeleteModalOpen={setIsDeleteModalOpen}
@@ -95,7 +94,7 @@ function ViewMovies({movies, setMovies, filter}) {
     );
 }
 
-function MovieRow({movie, filter, key, setSelectedMovie, setIsEditModalOpen, setIsDeleteModalOpen}) {
+function MovieRow({movie, filter, setSelectedMovie, setIsEditModalOpen, setIsDeleteModalOpen}) {
     
     function deleteMovie() {
         setSelectedMovie(movie);
@@ -108,7 +107,7 @@ function MovieRow({movie, filter, key, setSelectedMovie, setIsEditModalOpen, set
     }
 
     return (
-        <tr key={key}>
+        <tr key={movie.title}>
             <td>
                 <HighlightText text={movie.name} highlightStr={filter}/>
             </td>
